@@ -18,15 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-require __DIR__.'/auth.php';
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/page1', function () {
     return "<h1>This is page 1!!!</h1>";
 });
@@ -99,18 +90,14 @@ Route::get("/gallery/cat", function () {
     $cat = "http://www.onyxtruth.com/wp-content/uploads/2017/06/black-panther-movie-onyx-truth.jpg";
     return view("test/cat", compact("cat"));
 });
-//week3
-Route::middleware(['auth', 'role:admin','teacher','student'])->group(function () {
+
 Route::get("/teacher" , function (){
 	return view("teacher");
-});
 });
 
 Route::get("/student" , function (){
 	return view("student");
 });
-
-
 
 Route::get("/theme" , function (){
 	return view("theme");
@@ -195,7 +182,3 @@ Route::delete("/product/{id}", [ProductController::class, "destroy"])->name('pro
 // Route::resource('/product', ProductController::class );
 
 Route::resource('/staff', staffController::class );
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-require __DIR__ . '/auth.php';
